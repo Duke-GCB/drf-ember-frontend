@@ -6,8 +6,8 @@ version: 2
 jobs:
   build:
     docker:
-      # Ember recommends an active LTS version of node
-      - image: circleci/node:8.9
+      # Ember recommends an active LTS version of node, and a browser is needed
+      - image: circleci/node:8.9-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
