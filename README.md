@@ -1,17 +1,62 @@
 # drf-ember-frontend
 
-This README outlines the details of collaborating on this Ember addon.
+Ember Addon for connecting to Django REST Framework APIs using [drf-ember-backend](https://github.com/Duke-GCB/drf-ember-backend).
+
+Includes adapter, serializer, and authenticator classes:
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd drf-ember-frontend`
-* `npm install`
+From another ember application:
 
-## Running
+* `ember install ember-drf-frontend`
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+## Usage:
+
+Example adapter:
+
+```
+// app/adapters/application.js
+import DRFAdapter from 'drf-ember-frontend/adapters/drf-adapter';
+
+export default DRFAdapter.extend({
+  host: 'http://127.0.0.1:8000',
+  namespace: 'api/v2'
+});
+```
+
+Example serializer:
+
+```
+// app/serializers/application.js
+import DRFSerializer from 'drf-ember-frontend/serializers/drf-serializer';
+
+export default DRFSerializer.extend();
+
+```
+
+## Development
+
+```
+git clone git@github.com:Duke-GCB/drf-ember-frontend.git
+cd drf-ember-frontend
+npm install
+npm link
+cd /to/hosting/application
+npm link drf-ember-frontend
+```
+
+`npm link drf-ember-frontend` creates a symlink in the hosting application's `node_modules` directory, referring back to this addon's directory. The hosting ember application picks it up from there
+
+Edit `package.json` in the hosting application, and add the following to the `devDependencies` array:
+
+```
+   "drf-ember-frontend": "*"
+```
+
+Notes:
+
+- With `drf-ember-frontend` listed as a dependency in the hosting application, `npm install` will attempt to install it from npm. This will either fail (404) or overwrite the symlink with a version from npm.
+
 
 ## Running Tests
 
@@ -19,8 +64,3 @@ This README outlines the details of collaborating on this Ember addon.
 * `ember test`
 * `ember test --server`
 
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
