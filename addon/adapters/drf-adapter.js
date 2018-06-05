@@ -1,9 +1,10 @@
 import DS from 'ember-data';
-import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin'; // This is what causes the authorizer to be picked up
+import TokenAuthorizerMixin from 'ember-simple-auth-token/mixins/token-authorizer';
+
 import { dasherize } from '@ember/string';
 import { pluralize } from 'ember-inflector';
 
-export default DS.RESTAdapter.extend(DataAdapterMixin, {
+export default DS.RESTAdapter.extend(TokenAuthorizerMixin, {
   /*
     This adapter is customized for running Django REST Framework
    */
@@ -14,7 +15,6 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
       'Content-type': 'application/vnd.rootobject+json'
     };
   },
-  authorizer: 'authorizer:drf-token-authorizer', // Adds token authorization to requests
   buildURL(modelName, id, snapshot, requestType, query) {
     var url = this._super(modelName, id, snapshot, requestType, query);
     // Enforce trailing slashes
