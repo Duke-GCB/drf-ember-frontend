@@ -1,7 +1,8 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('authenticator:jwt-authenticator', 'Unit | Authenticator | DRF Token Authenticator', {
-  unit: true
+moduleFor('authenticator:jwt-authenticator', 'Unit | Authenticator | JWT Authenticator', {
+  unit: true,
+  needs: ['service:cookies']
 });
 
 test('it exists', function(assert) {
