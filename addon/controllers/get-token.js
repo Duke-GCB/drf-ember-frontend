@@ -23,7 +23,7 @@ export default Controller.extend({
     if(session.get('isAuthenticated')) {
       this.success();
     } else {
-      session.authenticate(authenticator, credentials).then(() => { this.success(); }, () => { this.failure(); });
+      session.authenticate(authenticator, credentials).then(this.success.bind(this), this.failure.bind(this));
     }
   }
 });
